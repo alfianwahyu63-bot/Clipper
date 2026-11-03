@@ -20,3 +20,5 @@ BATASAN PENTING
 
 Jika halaman lama masih muncul: refresh Chrome, atau hapus data situs, lalu buka lagi.
 Gunakan hanya video yang Anda punya izin untuk memprosesnya.
+
+UPDATE v2.1: Batas upload HP sekarang 120 MB (eksperimental). Untuk kestabilan disarankan <=50 MB; 80–120 MB dapat gagal karena memori perangkat/browser. Gunakan 1 klip 15 detik untuk tes pertama.

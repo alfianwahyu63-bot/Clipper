@@ -52,7 +52,7 @@
     <div class="card"><div class="cardtitle"><h3><svg><use href="#i-link"/></svg> Pilih sumber video</h3><span class="num">STEP 01</span></div>
       <div class="tabs" role="tablist"><button type="button" class="tab active" id="urlTab" aria-selected="true"><svg><use href="#i-link"/></svg> Link YouTube</button><button type="button" class="tab" id="uploadTab" aria-selected="false"><svg><use href="#i-upload"/></svg> Upload Video</button></div>
       <div id="urlArea"><label for="youtubeUrl" class="fieldlabel">Tempel URL video YouTube</label><div class="inputwrap"><svg><use href="#i-link"/></svg><input id="youtubeUrl" class="urlinput" type="url" placeholder="https://www.youtube.com/watch?v=..." autocomplete="off" spellcheck="false"/></div><div class="inputhint"><svg><use href="#i-info"/></svg> Video YouTube, Shorts, atau tautan youtu.be</div><div id="ytpreview" class="ytpreview"><img id="ytthumb" alt="Thumbnail YouTube"/><span>Video dikenali. Centang izin penggunaan sebelum memproses.</span></div></div>
-      <label id="uploadZone" class="uploadzone" for="videoFile"><svg><use href="#i-upload"/></svg><strong>Tap untuk memilih video</strong><small>atau tarik berkas video ke area ini</small><small>Disarankan MP4/WebM · batas 80 MB HP, 180 MB desktop</small><em id="fileName"></em><input type="file" id="videoFile" accept="video/mp4,video/quicktime,video/webm,video/x-matroska,video/*" style="display:none"/></label>
+      <label id="uploadZone" class="uploadzone" for="videoFile"><svg><use href="#i-upload"/></svg><strong>Tap untuk memilih video</strong><small>atau tarik berkas video ke area ini</small><small>Disarankan MP4/WebM · batas 120 MB HP (eksperimental), 180 MB desktop</small><em id="fileName"></em><input type="file" id="videoFile" accept="video/mp4,video/quicktime,video/webm,video/x-matroska,video/*" style="display:none"/></label>
       <label class="checkrow"><input type="checkbox" id="permission"/><span>Saya pemilik video atau memiliki izin untuk mengolah, memotong, dan membagikan konten ini.</span></label>
       <button id="create" class="actionbtn" type="button"><svg><use href="#i-sparkle"/></svg><span>Generate Viral Clips</span><svg><use href="#i-chevron"/></svg></button>
       <div class="statusbox" id="statusBox" role="status" aria-live="polite"><div class="statusline"><span id="statusStep">Memproses…</span><span id="statusPercent">0%</span></div><div class="progress"><div id="bar"></div></div><div id="statusError" class="statuserror"></div></div>
@@ -247,10 +247,15 @@ async function begin(){
   }
   const file=$('#videoFile').files?.[0];
   if(!file){showToast('Pilih file MP4/WebM dahulu.');return}
-  const maxSize=(/Mobi|Android/i.test(navigator.userAgent)?80:180)*1024*1024;
+  const mobileDevice=/Mobi|Android/i.test(navigator.userAgent);
+  const maxSize=(mobileDevice?120:180)*1024*1024;
   if(file.size>maxSize){
-    statusText('File terlalu besar untuk mode lokal',0,`Batas aman: ${Math.round(maxSize/1048576)} MB. Kompres video atau jalankan backend di PC.`);
+    statusText('File melebihi batas percobaan mode lokal',0,`Batas file: ${Math.round(maxSize/1048576)} MB. Di HP disarankan maksimal 50 MB demi kestabilan. Kompres video atau gunakan backend.`);
     return;
+  }
+  if(mobileDevice && file.size>80*1024*1024){
+    statusText('Mode percobaan file besar',1,'Ukuran file melebihi 80 MB. Proses bisa gagal karena keterbatasan memori Chrome; jika gagal, kompres video di bawah 50 MB dan coba 1 klip × 15 detik.');
+    await new Promise(resolve=>setTimeout(resolve,180));
   }
   $('#create').disabled=true;
   try{
@@ -279,7 +284,7 @@ async function begin(){
     showToast(`${clips.length} klip MP4 berhasil dibuat!`);
   }catch(e){
     console.error(e);
-    statusText('Gagal membuat MP4',0,(e?.message||String(e))+' Jika HP kehabisan memori, coba video lebih kecil, 1 klip dan 15 detik.');
+    statusText('Gagal membuat MP4',0,(e?.message||String(e))+' Jika HP kehabisan memori, coba video di bawah 50 MB, 1 klip dan 15 detik.');
   }finally{$('#create').disabled=false}
 }
 $('#create').addEventListener('click',begin);
