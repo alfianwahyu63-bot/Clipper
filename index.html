@@ -46,7 +46,7 @@
 <main class="main" id="top">
   <header class="topbar"><div class="breadcrumbs"><span>Workspace</span><svg><use href="#i-chevron"/></svg><strong>Overview</strong></div><div class="topright"><div class="server"><span class="dot" id="serverDot"></span><span id="serverText">Memeriksa server…</span></div><button class="topicon" id="installTop" title="Install aplikasi" aria-label="Install aplikasi"><svg><use href="#i-inst"/></svg></button><div class="avatar">VC</div></div></header>
   <div class="headline"><div><div class="eyebrow">✦ CREATE. CLIP. SHARE.</div><h1>Smart Video Clipper Studio</h1><p>Satu video panjang, banyak potongan konten potensial.</p></div><div class="pill"><svg><use href="#i-sparkle"/></svg> Local Highlight Detection</div></div>
-  <div role="status" style="margin-bottom:18px;padding:12px 16px;border-radius:13px;border:1px solid #66552a;background:#292415;color:#f5d58a;font-size:13px;line-height:1.5"><strong>Mode Lokal — Bisa membuat MP4:</strong> Pilih <b>Upload Video</b> untuk mendeteksi bagian dengan audio paling aktif dan memotongnya langsung di HP tanpa backend. Pertama kali perlu internet untuk memuat FFmpeg (±30 MB). <b>Link YouTube langsung</b> dan <b>subtitle/transkripsi AI</b> belum tersedia pada GitHub Pages. Skor bukan prediksi views.</div>
+  <div role="status" style="margin-bottom:18px;padding:12px 16px;border-radius:13px;border:1px solid #66552a;background:#292415;color:#f5d58a;font-size:13px;line-height:1.5"><strong>Mode Lokal — Bisa membuat MP4:</strong> Pilih <b>Upload Video</b> untuk mendeteksi bagian dengan audio paling aktif dan memotongnya langsung di HP tanpa backend. Pertama kali perlu internet untuk memuat FFmpeg (±30 MB). Untuk tes awal gunakan video 5–15 MB, 1 klip × 15 detik; file besar dapat kehabisan memori. <b>Link YouTube langsung</b> dan <b>subtitle/transkripsi AI</b> belum tersedia pada GitHub Pages. Skor bukan prediksi views.</div>
   <section class="hero" aria-label="Pengenalan ViralCut"><div class="inner"><div class="herotag"><svg><use href="#i-sparkle"/></svg> YOUR CONTENT, REIMAGINED</div><h2>Ubah video panjang jadi <span>konten yang menarik.</span></h2><p>Analisis dinamika audio pada video yang diunggah untuk menemukan momen aktif, lalu potong otomatis dalam format Shorts — langsung di browser.</p></div><div class="herographic" aria-hidden="true"><div class="phone"><svg><use href="#i-play"/></svg></div><div class="graphchip"><svg><use href="#i-trending"/></svg> 94 SCORE</div><div class="graphchip two">✦ AUTO CLIP</div></div></section>
   <section class="workgrid" id="studio" aria-label="Generator klip otomatis">
     <div class="card"><div class="cardtitle"><h3><svg><use href="#i-link"/></svg> Pilih sumber video</h3><span class="num">STEP 01</span></div>
@@ -110,7 +110,7 @@ async function makeBlobUrl(url, mime) {
 
 async function getClipEngine() {
   if(clipEngine)return clipEngine;
-  statusText('Memuat FFmpeg untuk pemotongan MP4 (±30 MB)…',8);
+  statusText('Menyiapkan mesin FFmpeg di browser (unduh modul ±30 MB pertama kali)…',8);
   if(!window.FFmpegWASM?.FFmpeg){
     const scripts=[
       'https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.12.15/dist/umd/ffmpeg.js',
@@ -118,23 +118,33 @@ async function getClipEngine() {
     ];
     for(const u of scripts){try{await loadExternalScript(u);if(window.FFmpegWASM?.FFmpeg)break;}catch(e){console.warn(e);}}
   }
-  if(!window.FFmpegWASM?.FFmpeg)throw new Error('Pustaka FFmpeg tidak tersedia. Pastikan internet aktif, lalu coba lagi di Chrome.');
+  if(!window.FFmpegWASM?.FFmpeg)throw new Error('Pustaka FFmpeg gagal dimuat. Periksa koneksi internet.');
   const engine=new window.FFmpegWASM.FFmpeg();
-  // ffmpeg.wasm UMD uses a separate worker. classWorkerURL allows a blob URL
-  // so it works from GitHub Pages, even though the library is hosted on a CDN.
-  const wrapperBase='https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.12.15/dist/umd';
-  const coreBase='https://cdn.jsdelivr.net/npm/@ffmpeg/core@0.12.10/dist/umd';
+  // V2.2: fix 'Cannot find module blob:...'.
+  // UMD webpack worker (814.ffmpeg.js) intercepts import(blob:coreURL) as
+  // require(blob:...) and fails. Use our UNBUNDLED module worker hosted on
+  // the SAME origin instead. Its native import() supports blob: ESM modules.
+  const classWorkerURL=new URL('./ffmpeg-worker-v22.js',document.baseURI).href;
+  const workerCheck=await fetch(classWorkerURL,{cache:'no-store'});
+  if(!workerCheck.ok)throw new Error('ffmpeg-worker-v22.js belum ter-upload ke hosting ('+workerCheck.status+'). Upload file tersebut bersama index.html.');
+  const coreBase='https://cdn.jsdelivr.net/npm/@ffmpeg/core@0.12.10/dist/esm';
   const opts={
-    classWorkerURL:await makeBlobUrl(`${wrapperBase}/814.ffmpeg.js`,'text/javascript'),
+    classWorkerURL,
     coreURL:await makeBlobUrl(`${coreBase}/ffmpeg-core.js`,'text/javascript'),
     wasmURL:await makeBlobUrl(`${coreBase}/ffmpeg-core.wasm`,'application/wasm')
   };
-  const loaded=await engine.load(opts);
-  if(!loaded)console.log('FFmpeg engine initialized');
+  statusText('Memulai mesin FFmpeg (WebAssembly)…',15);
+  let timer;
+  try {
+    await Promise.race([
+      engine.load(opts),
+      new Promise((_,reject)=>{timer=setTimeout(()=>reject(new Error('Memuat FFmpeg terlalu lama. Periksa internet dan coba lagi.')),180000)})
+    ]);
+  }catch(e){engine.terminate();throw e}
+  finally{clearTimeout(timer)}
   clipEngine=engine;
   return engine;
 }
-
 function getVideoDuration(file){
   return new Promise((resolve,reject)=>{
     const video=document.createElement('video'); const url=URL.createObjectURL(file);
@@ -284,7 +294,7 @@ async function begin(){
     showToast(`${clips.length} klip MP4 berhasil dibuat!`);
   }catch(e){
     console.error(e);
-    statusText('Gagal membuat MP4',0,(e?.message||String(e))+' Jika HP kehabisan memori, coba video di bawah 50 MB, 1 klip dan 15 detik.');
+    statusText('Gagal membuat MP4',0,(e?.message||String(e))+' Jika gagal, coba video 5–15 MB, 1 klip dan 15 detik. Pastikan ffmpeg-worker-v22.js sudah ter-upload dan refresh aplikasi.');
   }finally{$('#create').disabled=false}
 }
 $('#create').addEventListener('click',begin);

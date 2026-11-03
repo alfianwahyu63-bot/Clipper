@@ -1,5 +1,5 @@
-const CACHE = 'viralcut-pages-v4-local-mp4-120mb';
-const ASSETS = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png'];
+const CACHE = 'viralcut-pages-v5-ffmpeg-worker-v22';
+const ASSETS = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png', './ffmpeg-worker-v22.js'];
 self.addEventListener('install', event => {
  event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(ASSETS)).then(() => self.skipWaiting()));
 });

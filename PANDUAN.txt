@@ -1,24 +1,29 @@
-VIRALCUT STUDIO V2 — MODE LOKAL MP4 (GITHUB PAGES)
+VIRALCUT STUDIO V2.2 – PERBAIKAN ERROR "Cannot find module blob:..."
 
-1. Ekstrak ZIP.
-2. Upload SEMUA file langsung ke ROOT repo GitHub: alfianwahyu63-bot/Clipper.
-3. Timpa index.html, sw.js, dan file yang lain bila diminta.
-4. Commit changes. Tunggu workflow GitHub Pages selesai.
-5. Buka https://alfianwahyu63-bot.github.io/Clipper/ di Chrome, reload halaman agar versi baru aktif.
-6. Pilih Upload Video, pilih MP4/WebM milik Anda (disarankan klip pendek 10-50 MB untuk tes).
-7. Pilih 1 klip, 15 detik, centang izin, klik Generate Viral Clips.
-8. Unduh MP4 hasilnya.
+Masalah di V2.1: pekerja WebAssembly bawaan @ffmpeg/ffmpeg versi UMD
+memperlakukan import URL blob sebagai nama modul webpack.
+V2.2 menggunakan worker ESM lokal yang memanggil import() native browser.
 
-BATASAN PENTING
-- Mode tanpa server bekerja dari FILE video lokal, bukan URL YouTube.
-- Skor didasarkan pada pola energi audio, bukan AI transkripsi/analisis semantik atau prediksi views.
-- Subtitle otomatis belum aktif.
-- Mesin FFmpeg WebAssembly (~30 MB) dimuat dari CDN pada penggunaan pertama. Membutuhkan internet.
-- Android RAM terbatas: file 80 MB max; desktop 180 MB max. Rendering dapat lambat dan gagal untuk video yang rumit/besar.
-- Video tidak dikirim ke server; diproses di browser.
-- Untuk YouTube langsung, transkripsi, subtitle dan analisis semantik, butuh backend komputasi, biasanya berbiaya.
+UPLOAD KE GITHUB
+1. Ekstrak ZIP ini di HP.
+2. Di repository GitHub Clipper, upload seluruh isi hasil ekstrak ke ROOT.
+3. WAJIB upload file BARU ffmpeg-worker-v22.js bersama index.html dan sw.js.
+4. Timpa file lama, commit changes.
+5. Jika Cloudflare Pages terhubung ke repo ini, tunggu deploy sukses.
+   Alternatif: GitHub Pages juga bisa memuat berkas tersebut.
+6. Tutup PWA/Chrome lalu buka situs lagi. Bila perlu refresh atau hapus
+   cache situs agar service worker versi baru menggantikan yang lama.
 
-Jika halaman lama masih muncul: refresh Chrome, atau hapus data situs, lalu buka lagi.
-Gunakan hanya video yang Anda punya izin untuk memprosesnya.
+TEST BERURUTAN
+- Upload MP4 kecil 5–15 MB terlebih dahulu (bukan 75 MB).
+- 1 klip, 15 detik, 9:16.
+- Klik Generate Viral Clips.
+- Koneksi internet diperlukan untuk mengunduh FFmpeg Core ~30MB.
+- Setelah uji berhasil, tingkatkan ukuran video perlahan.
 
-UPDATE v2.1: Batas upload HP sekarang 120 MB (eksperimental). Untuk kestabilan disarankan <=50 MB; 80–120 MB dapat gagal karena memori perangkat/browser. Gunakan 1 klip 15 detik untuk tes pertama.
+CATATAN: Kode diperiksa sintaksnya, tetapi belum diuji ekspor video
+langsung di Chrome Android/Cloudflare Pages pada perangkat pengguna.
+Jika error baru muncul, kirim screenshot baru.
+Untuk 75 MB RAM HP dapat menjadi hambatan meski kesalahan modul hilang.
+Mode YouTube dari link, subtitle AI, dan analisis isi percakapan
+masih memerlukan layanan backend terpisah.
