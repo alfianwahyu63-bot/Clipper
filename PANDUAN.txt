@@ -1,0 +1,9 @@
+VIRALCUT - GITHUB PAGES
+
+Upload FILE-FILE dari folder ZIP yang sudah diekstrak ke halaman utama repository: index.html, manifest.webmanifest, sw.js, icon-192.png, icon-512.png. Jangan upload ZIP saja.
+
+Di repository GitHub: Settings > Pages > Build and deployment > Source: Deploy from a branch > Branch: main > Folder: /(root) > Save.
+
+URL yang diharapkan: https://alfianwahyu63-bot.github.io/Clipper/
+
+GitHub Pages hanya menjalankan frontend demo. Untuk analisis video, YouTube import, dan export MP4 perlu backend terpisah.
