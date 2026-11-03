@@ -1,9 +1,22 @@
-VIRALCUT - GITHUB PAGES
+VIRALCUT STUDIO V2 — MODE LOKAL MP4 (GITHUB PAGES)
 
-Upload FILE-FILE dari folder ZIP yang sudah diekstrak ke halaman utama repository: index.html, manifest.webmanifest, sw.js, icon-192.png, icon-512.png. Jangan upload ZIP saja.
+1. Ekstrak ZIP.
+2. Upload SEMUA file langsung ke ROOT repo GitHub: alfianwahyu63-bot/Clipper.
+3. Timpa index.html, sw.js, dan file yang lain bila diminta.
+4. Commit changes. Tunggu workflow GitHub Pages selesai.
+5. Buka https://alfianwahyu63-bot.github.io/Clipper/ di Chrome, reload halaman agar versi baru aktif.
+6. Pilih Upload Video, pilih MP4/WebM milik Anda (disarankan klip pendek 10-50 MB untuk tes).
+7. Pilih 1 klip, 15 detik, centang izin, klik Generate Viral Clips.
+8. Unduh MP4 hasilnya.
 
-Di repository GitHub: Settings > Pages > Build and deployment > Source: Deploy from a branch > Branch: main > Folder: /(root) > Save.
+BATASAN PENTING
+- Mode tanpa server bekerja dari FILE video lokal, bukan URL YouTube.
+- Skor didasarkan pada pola energi audio, bukan AI transkripsi/analisis semantik atau prediksi views.
+- Subtitle otomatis belum aktif.
+- Mesin FFmpeg WebAssembly (~30 MB) dimuat dari CDN pada penggunaan pertama. Membutuhkan internet.
+- Android RAM terbatas: file 80 MB max; desktop 180 MB max. Rendering dapat lambat dan gagal untuk video yang rumit/besar.
+- Video tidak dikirim ke server; diproses di browser.
+- Untuk YouTube langsung, transkripsi, subtitle dan analisis semantik, butuh backend komputasi, biasanya berbiaya.
 
-URL yang diharapkan: https://alfianwahyu63-bot.github.io/Clipper/
-
-GitHub Pages hanya menjalankan frontend demo. Untuk analisis video, YouTube import, dan export MP4 perlu backend terpisah.
+Jika halaman lama masih muncul: refresh Chrome, atau hapus data situs, lalu buka lagi.
+Gunakan hanya video yang Anda punya izin untuk memprosesnya.

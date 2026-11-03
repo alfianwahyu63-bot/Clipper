@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#090d18" />
   <meta name="description" content="ViralCut Studio: buat video klip Shorts otomatis dari konten milik sendiri, rekomendasi momen terbaik, dan ekspor video vertikal." />
-  <title>ViralCut Studio — AI Video Clipper</title>
+  <title>ViralCut Studio — Smart Auto Clipper</title>
   <link rel="icon" type="image/png" href="./icon-192.png" />
   <link rel="manifest" href="./manifest.webmanifest" />
   <style>
@@ -41,32 +41,32 @@
   </nav>
   <div class="nav-sep"></div><div class="navlabel">LAINNYA</div>
   <nav class="nav"><a class="navbtn" href="#guide"><svg><use href="#i-book"/></svg><span>Panduan</span></a><button id="sideInstall" class="navbtn" type="button"><svg><use href="#i-inst"/></svg><span>Install Aplikasi</span></button></nav>
-  <div class="sidebottom"><div class="sidepromo"><span class="spark"><svg><use href="#i-sparkle"/></svg></span><b>Ide konten jadi klip</b><p>Cari highlight yang menarik, lalu jadikan video Shorts dalam sekali proses.</p><button id="sideDemo" type="button">Coba tampilan demo →</button></div><div class="version">ViralCut Studio · PWA v1.0</div></div>
+  <div class="sidebottom"><div class="sidepromo"><span class="spark"><svg><use href="#i-sparkle"/></svg></span><b>Ide konten jadi klip</b><p>Cari highlight yang menarik, lalu jadikan video Shorts dalam sekali proses.</p><button id="sideDemo" type="button">Coba tampilan demo →</button></div><div class="version">ViralCut Studio · PWA v2.0</div></div>
 </aside>
 <main class="main" id="top">
   <header class="topbar"><div class="breadcrumbs"><span>Workspace</span><svg><use href="#i-chevron"/></svg><strong>Overview</strong></div><div class="topright"><div class="server"><span class="dot" id="serverDot"></span><span id="serverText">Memeriksa server…</span></div><button class="topicon" id="installTop" title="Install aplikasi" aria-label="Install aplikasi"><svg><use href="#i-inst"/></svg></button><div class="avatar">VC</div></div></header>
-  <div class="headline"><div><div class="eyebrow">✦ CREATE. CLIP. SHARE.</div><h1>AI Video Clipper Studio</h1><p>Satu video panjang, banyak potongan konten potensial.</p></div><div class="pill"><svg><use href="#i-sparkle"/></svg> Smart Highlight Detection</div></div>
-  <div role="status" style="margin-bottom:18px;padding:12px 16px;border-radius:13px;border:1px solid #66552a;background:#292415;color:#f5d58a;font-size:13px;line-height:1.5"><strong>Mode GitHub Pages — Preview:</strong> Tampilan dan instalasi PWA dapat dicoba di sini. Analisis AI, pemotongan video, dan unduhan MP4 memerlukan server backend terpisah. Tombol “Lihat Demo” hanya memperlihatkan contoh hasil.</div>
-  <section class="hero" aria-label="Pengenalan ViralCut"><div class="inner"><div class="herotag"><svg><use href="#i-sparkle"/></svg> YOUR CONTENT, REIMAGINED</div><h2>Ubah video panjang jadi <span>konten yang menarik.</span></h2><p>Analisis pembicaraan dan dinamika audio untuk menemukan momen terbaik, kemudian potong otomatis dalam format Shorts.</p></div><div class="herographic" aria-hidden="true"><div class="phone"><svg><use href="#i-play"/></svg></div><div class="graphchip"><svg><use href="#i-trending"/></svg> 94 SCORE</div><div class="graphchip two">✦ AUTO CLIP</div></div></section>
+  <div class="headline"><div><div class="eyebrow">✦ CREATE. CLIP. SHARE.</div><h1>Smart Video Clipper Studio</h1><p>Satu video panjang, banyak potongan konten potensial.</p></div><div class="pill"><svg><use href="#i-sparkle"/></svg> Local Highlight Detection</div></div>
+  <div role="status" style="margin-bottom:18px;padding:12px 16px;border-radius:13px;border:1px solid #66552a;background:#292415;color:#f5d58a;font-size:13px;line-height:1.5"><strong>Mode Lokal — Bisa membuat MP4:</strong> Pilih <b>Upload Video</b> untuk mendeteksi bagian dengan audio paling aktif dan memotongnya langsung di HP tanpa backend. Pertama kali perlu internet untuk memuat FFmpeg (±30 MB). <b>Link YouTube langsung</b> dan <b>subtitle/transkripsi AI</b> belum tersedia pada GitHub Pages. Skor bukan prediksi views.</div>
+  <section class="hero" aria-label="Pengenalan ViralCut"><div class="inner"><div class="herotag"><svg><use href="#i-sparkle"/></svg> YOUR CONTENT, REIMAGINED</div><h2>Ubah video panjang jadi <span>konten yang menarik.</span></h2><p>Analisis dinamika audio pada video yang diunggah untuk menemukan momen aktif, lalu potong otomatis dalam format Shorts — langsung di browser.</p></div><div class="herographic" aria-hidden="true"><div class="phone"><svg><use href="#i-play"/></svg></div><div class="graphchip"><svg><use href="#i-trending"/></svg> 94 SCORE</div><div class="graphchip two">✦ AUTO CLIP</div></div></section>
   <section class="workgrid" id="studio" aria-label="Generator klip otomatis">
     <div class="card"><div class="cardtitle"><h3><svg><use href="#i-link"/></svg> Pilih sumber video</h3><span class="num">STEP 01</span></div>
       <div class="tabs" role="tablist"><button type="button" class="tab active" id="urlTab" aria-selected="true"><svg><use href="#i-link"/></svg> Link YouTube</button><button type="button" class="tab" id="uploadTab" aria-selected="false"><svg><use href="#i-upload"/></svg> Upload Video</button></div>
       <div id="urlArea"><label for="youtubeUrl" class="fieldlabel">Tempel URL video YouTube</label><div class="inputwrap"><svg><use href="#i-link"/></svg><input id="youtubeUrl" class="urlinput" type="url" placeholder="https://www.youtube.com/watch?v=..." autocomplete="off" spellcheck="false"/></div><div class="inputhint"><svg><use href="#i-info"/></svg> Video YouTube, Shorts, atau tautan youtu.be</div><div id="ytpreview" class="ytpreview"><img id="ytthumb" alt="Thumbnail YouTube"/><span>Video dikenali. Centang izin penggunaan sebelum memproses.</span></div></div>
-      <label id="uploadZone" class="uploadzone" for="videoFile"><svg><use href="#i-upload"/></svg><strong>Tap untuk memilih video</strong><small>atau tarik berkas video ke area ini</small><small>MP4, MOV, MKV, WEBM · maks. 500 MB</small><em id="fileName"></em><input type="file" id="videoFile" accept="video/mp4,video/quicktime,video/webm,video/x-matroska,video/*" style="display:none"/></label>
+      <label id="uploadZone" class="uploadzone" for="videoFile"><svg><use href="#i-upload"/></svg><strong>Tap untuk memilih video</strong><small>atau tarik berkas video ke area ini</small><small>Disarankan MP4/WebM · batas 80 MB HP, 180 MB desktop</small><em id="fileName"></em><input type="file" id="videoFile" accept="video/mp4,video/quicktime,video/webm,video/x-matroska,video/*" style="display:none"/></label>
       <label class="checkrow"><input type="checkbox" id="permission"/><span>Saya pemilik video atau memiliki izin untuk mengolah, memotong, dan membagikan konten ini.</span></label>
       <button id="create" class="actionbtn" type="button"><svg><use href="#i-sparkle"/></svg><span>Generate Viral Clips</span><svg><use href="#i-chevron"/></svg></button>
       <div class="statusbox" id="statusBox" role="status" aria-live="polite"><div class="statusline"><span id="statusStep">Memproses…</span><span id="statusPercent">0%</span></div><div class="progress"><div id="bar"></div></div><div id="statusError" class="statuserror"></div></div>
     </div>
-    <div class="card"><div class="cardtitle"><h3><svg><use href="#i-sparkle"/></svg> Pengaturan AI</h3><span class="num">STEP 02</span></div>
+    <div class="card"><div class="cardtitle"><h3><svg><use href="#i-sparkle"/></svg> Pengaturan Klip</h3><span class="num">STEP 02</span></div>
       <div class="fieldgrid"><div><label for="clipCount">Jumlah klip</label><select id="clipCount" class="select"><option value="1">1 Klip</option><option value="3" selected>3 Klip</option><option value="5">5 Klip</option><option value="8">8 Klip</option></select></div><div><label for="clipDuration">Durasi / klip</label><select id="clipDuration" class="select"><option value="15">15 Detik</option><option value="30" selected>30 Detik</option><option value="45">45 Detik</option><option value="60">60 Detik</option></select></div></div>
       <div style="margin-top:18px"><span class="fieldlabel">Format output</span><div class="formatrow"><button type="button" class="aspect active" data-aspect="9:16"><svg><use href="#i-phone"/></svg> 9:16</button><button type="button" class="aspect" data-aspect="1:1"><svg><use href="#i-square"/></svg> 1:1</button><button type="button" class="aspect" data-aspect="16:9"><svg><use href="#i-widescreen"/></svg> 16:9</button></div></div>
-      <div class="togglelist"><div class="tog"><div><strong><svg><use href="#i-sparkle"/></svg> Smart Highlight AI</strong><small>Temukan hook dan bagian percakapan kuat</small></div><label class="switch"><input type="checkbox" checked id="aiToggle"/><span></span></label></div><div class="tog"><div><strong><svg><use href="#i-sub"/></svg> Subtitle otomatis</strong><small>Ditambahkan bila transkripsi tersedia</small></div><label class="switch"><input type="checkbox" checked id="captionToggle"/><span></span></label></div></div>
+      <div class="togglelist"><div class="tog"><div><strong><svg><use href="#i-sparkle"/></svg> Smart Audio Highlight</strong><small>Ranking berdasarkan energi dan perubahan audio (bukan analisis isi ucapan)</small></div><label class="switch"><input type="checkbox" checked id="aiToggle"/><span></span></label></div><div class="tog"><div><strong><svg><use href="#i-sub"/></svg> Subtitle otomatis (butuh backend)</strong><small>Belum tersedia pada mode lokal tanpa server</small></div><label class="switch"><input type="checkbox" disabled id="captionToggle"/><span></span></label></div></div>
       <div class="sideinfo"><div class="stat"><strong>MP4</strong><small>Output video</small></div><div class="stat"><strong>9:16</strong><small>Shorts ready</small></div><div class="stat"><strong>0–100</strong><small>Highlight score</small></div></div>
-      <div class="helpbox"><h4>✨ Bagaimana skor dihitung?</h4><p>Menggabungkan kata pemancing perhatian, pertanyaan, kepadatan ucapan, serta perubahan energi audio.</p><p><strong>Catatan:</strong> skor adalah estimasi kualitas highlight, bukan jaminan jumlah views.</p></div>
+      <div class="helpbox"><h4>✨ Bagaimana skor dihitung?</h4><p>Pada mode lokal, skor didasarkan pada tingkat aktivitas serta perubahan energi audio. Sistem belum memahami percakapan atau menebak jumlah views.</p><p><strong>Catatan:</strong> skor adalah estimasi kualitas highlight, bukan jaminan jumlah views.</p></div>
     </div>
   </section>
-  <section id="results" class="results"><div class="sectionhead"><h3><svg><use href="#i-trending"/></svg> Rekomendasi Clip</h3><button class="subtlebtn" type="button" id="demoBtn"><svg><use href="#i-sparkle"/></svg> Lihat Demo</button></div><div class="resultsbar"><span id="resultsBadge" class="modebadge demo">BELUM ADA HASIL</span><span id="resultsDesc">Hasil klip otomatis akan tampil di sini.</span></div><div id="resultGrid" class="resultgrid"><div class="empty" style="grid-column:1/-1"><svg><use href="#i-video"/></svg><strong>Siap membuat konten?</strong><p>Masukkan video YouTube milik Anda atau unggah video. Klik <b>Generate Viral Clips</b> untuk memulai; atau pilih Lihat Demo untuk mengecek tampilannya.</p></div></div></section>
-  <section id="guide" class="guide"><div class="sectionhead"><h3><svg><use href="#i-book"/></svg> Cara kerja ViralCut</h3></div><div class="howgrid"><div class="how"><div class="step">01</div><div><strong>Masukkan sumber video</strong><p>Tempel link YouTube yang boleh diolah atau unggah video asli milik Anda.</p></div></div><div class="how"><div class="step">02</div><div><strong>Analisis otomatis</strong><p>Mesin menilai ritme audio, kalimat pembuka, dan topik yang berpotensi menarik.</p></div></div><div class="how"><div class="step">03</div><div><strong>Preview & unduh MP4</strong><p>Hasil dipotong sesuai rasio yang dipilih dan siap diedit atau diunggah.</p></div></div></div><p class="footnote"><strong>Info:</strong> Untuk menghasilkan MP4 dari link YouTube dibutuhkan backend Python + FFmpeg yang aktif. File HTML saja hanya menjalankan tampilan/demo. Fitur impor link bergantung pada hak penggunaan dan pembatasan akses YouTube.</p></section>
+  <section id="results" class="results"><div class="sectionhead"><h3><svg><use href="#i-trending"/></svg> Rekomendasi Clip</h3><button class="subtlebtn" type="button" id="demoBtn"><svg><use href="#i-sparkle"/></svg> Lihat Demo</button></div><div class="resultsbar"><span id="resultsBadge" class="modebadge demo">BELUM ADA HASIL</span><span id="resultsDesc">Hasil klip otomatis akan tampil di sini.</span></div><div id="resultGrid" class="resultgrid"><div class="empty" style="grid-column:1/-1"><svg><use href="#i-video"/></svg><strong>Siap membuat konten?</strong><p>Unggah video MP4/WebM milik Anda. Klik <b>Generate Viral Clips</b> untuk memulai; atau pilih Lihat Demo untuk mengecek tampilannya.</p></div></div></section>
+  <section id="guide" class="guide"><div class="sectionhead"><h3><svg><use href="#i-book"/></svg> Cara kerja ViralCut</h3></div><div class="howgrid"><div class="how"><div class="step">01</div><div><strong>Masukkan sumber video</strong><p>Unggah video asli yang Anda punya hak untuk mengolahnya. Link YouTube belum diproses di mode tanpa server.</p></div></div><div class="how"><div class="step">02</div><div><strong>Analisis otomatis</strong><p>Mode lokal menilai energi dan perubahan audio; bukan transkripsi ucapan atau AI semantik.</p></div></div><div class="how"><div class="step">03</div><div><strong>Preview & unduh MP4</strong><p>Hasil dipotong sesuai rasio yang dipilih dan siap diedit atau diunggah.</p></div></div></div><p class="footnote"><strong>Info:</strong> Klip MP4 dari video upload diproses di browser dengan ffmpeg.wasm (perlu internet saat pertama dimuat). File besar/HP dengan RAM terbatas mungkin gagal. Link YouTube, subtitle otomatis, dan pemilihan berdasarkan isi percakapan memerlukan backend tambahan, selain izin penggunaan konten.</p></section>
 </main></div>
 <nav class="mobilenav" aria-label="Navigasi bawah"><a href="#top" class="active"><svg><use href="#i-grid"/></svg>Beranda</a><a href="#studio"><svg><use href="#i-sparkle"/></svg>Buat Klip</a><a href="#results"><svg><use href="#i-video"/></svg>Hasil</a><a href="#guide"><svg><use href="#i-book"/></svg>Panduan</a></nav>
 <div class="toast" id="toast" role="alert"></div>
@@ -74,7 +74,7 @@
 <script>
 'use strict';
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
-const state={mode:'url',aspect:'9:16',job:null,poll:null,installPrompt:null,online:false};
+const state={mode:'upload',aspect:'9:16',job:null,poll:null,installPrompt:null,online:false};
 const showToast=(text)=>{const el=$('#toast');el.textContent=text;el.classList.add('show');clearTimeout(showToast.t);showToast.t=setTimeout(()=>el.classList.remove('show'),3800)};
 const escapeHtml=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const prettyTime=s=>{s=Math.max(0,Math.round(s));return `${Math.floor(s/60).toString().padStart(2,'0')}:${(s%60).toString().padStart(2,'0')}`};
@@ -87,16 +87,201 @@ $$('.aspect').forEach(btn=>btn.addEventListener('click',()=>{state.aspect=btn.da
 $('#videoFile').addEventListener('change',()=>{const f=$('#videoFile').files?.[0];$('#fileName').textContent=f?`${f.name} · ${(f.size/1024/1024).toFixed(1)} MB`:'';});
 const dropzone=$('#uploadZone');['dragenter','dragover'].forEach(e=>dropzone.addEventListener(e,ev=>{ev.preventDefault();dropzone.classList.add('drag')}));['dragleave','drop'].forEach(e=>dropzone.addEventListener(e,ev=>{ev.preventDefault();dropzone.classList.remove('drag')}));dropzone.addEventListener('drop',e=>{const f=e.dataTransfer?.files?.[0];if(!f)return;const dt=new DataTransfer();dt.items.add(f);$('#videoFile').files=dt.files;$('#fileName').textContent=`${f.name} · ${(f.size/1024/1024).toFixed(1)} MB`;});
 function statusText(step,percent,error=''){$('#statusBox').classList.add('show');$('#statusStep').textContent=step;$('#statusPercent').textContent=`${percent}%`;$('#bar').style.width=`${Math.max(0,Math.min(100,percent))}%`;$('#statusError').textContent=error;}
-async function begin(){if(!$('#permission').checked){showToast('Centang persetujuan hak penggunaan video terlebih dahulu.');return}
-const options={permission:true,clip_count:Number($('#clipCount').value),clip_duration:Number($('#clipDuration').value),aspect:state.aspect,captions:$('#captionToggle').checked,use_ai:$('#aiToggle').checked};
-if(state.mode==='url'&&!idFromUrl($('#youtubeUrl').value)){showToast('Masukkan URL video YouTube yang valid.');return}
-if(state.mode==='upload'&&!$('#videoFile').files?.[0]){showToast('Pilih file video terlebih dahulu.');return}
-if(!state.online){showToast('Backend belum aktif. Jalankan app.py atau deploy proyek ke server untuk membuat video.');statusText('Server belum terhubung',0,'Preview HTML tidak dapat memotong video sendiri. Jalankan backend sesuai README, kemudian buka alamat server di Chrome.');return}
-$('#create').disabled=true;statusText('Mengirim tugas…',2);try{
-let r;if(state.mode==='url'){r=await fetch('/api/jobs/url',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({...options,url:$('#youtubeUrl').value.trim()})})}else{const f=new FormData();f.append('file',$('#videoFile').files[0]);Object.entries(options).forEach(([k,v])=>f.append(k,String(v)));r=await fetch('/api/jobs/upload',{method:'POST',body:f})}
-const d=await r.json();if(!r.ok)throw Error(typeof d.detail==='string'?d.detail:JSON.stringify(d.detail||'Permintaan gagal'));
-state.job=d.job_id;clearInterval(state.poll);await pollJob();state.poll=setInterval(pollJob,1800);
-}catch(e){statusText('Gagal mengirim tugas',0,e.message);$('#create').disabled=false;}}
+// ===== V2: client-side video cutting; no cloud compute =====
+let clipEngine=null;
+let sourceUploaded=false;
+let generatedUrls=[];
+let ffmpegAssetUrls=[];
+
+async function loadExternalScript(url) {
+  await new Promise((resolve,reject)=>{
+    const el=document.createElement('script'); el.src=url;
+    el.onload=resolve; el.onerror=()=>reject(new Error('Gagal memuat komponen FFmpeg. Periksa koneksi internet.'));
+    document.head.appendChild(el);
+  });
+}
+
+async function makeBlobUrl(url, mime) {
+  const r=await fetch(url,{mode:'cors'});
+  if(!r.ok)throw new Error(`Gagal mengambil modul FFmpeg (${r.status}).`);
+  const blob=new Blob([await r.arrayBuffer()],{type:mime});
+  const obj=URL.createObjectURL(blob); ffmpegAssetUrls.push(obj); return obj;
+}
+
+async function getClipEngine() {
+  if(clipEngine)return clipEngine;
+  statusText('Memuat FFmpeg untuk pemotongan MP4 (±30 MB)…',8);
+  if(!window.FFmpegWASM?.FFmpeg){
+    const scripts=[
+      'https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.12.15/dist/umd/ffmpeg.js',
+      'https://unpkg.com/@ffmpeg/ffmpeg@0.12.15/dist/umd/ffmpeg.js'
+    ];
+    for(const u of scripts){try{await loadExternalScript(u);if(window.FFmpegWASM?.FFmpeg)break;}catch(e){console.warn(e);}}
+  }
+  if(!window.FFmpegWASM?.FFmpeg)throw new Error('Pustaka FFmpeg tidak tersedia. Pastikan internet aktif, lalu coba lagi di Chrome.');
+  const engine=new window.FFmpegWASM.FFmpeg();
+  // ffmpeg.wasm UMD uses a separate worker. classWorkerURL allows a blob URL
+  // so it works from GitHub Pages, even though the library is hosted on a CDN.
+  const wrapperBase='https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.12.15/dist/umd';
+  const coreBase='https://cdn.jsdelivr.net/npm/@ffmpeg/core@0.12.10/dist/umd';
+  const opts={
+    classWorkerURL:await makeBlobUrl(`${wrapperBase}/814.ffmpeg.js`,'text/javascript'),
+    coreURL:await makeBlobUrl(`${coreBase}/ffmpeg-core.js`,'text/javascript'),
+    wasmURL:await makeBlobUrl(`${coreBase}/ffmpeg-core.wasm`,'application/wasm')
+  };
+  const loaded=await engine.load(opts);
+  if(!loaded)console.log('FFmpeg engine initialized');
+  clipEngine=engine;
+  return engine;
+}
+
+function getVideoDuration(file){
+  return new Promise((resolve,reject)=>{
+    const video=document.createElement('video'); const url=URL.createObjectURL(file);
+    let finished=false;
+    let timer=setTimeout(()=>finish(null,new Error('Metadata video tidak terbaca. Gunakan file MP4 atau WebM.')),16000);
+    function finish(value,error){if(finished)return;finished=true;clearTimeout(timer);video.onerror=null;video.onloadedmetadata=null;video.removeAttribute('src');video.load();URL.revokeObjectURL(url);error?reject(error):resolve(value)}
+    video.preload='metadata';video.muted=true;
+    video.onloadedmetadata=()=> Number.isFinite(video.duration)&&video.duration>0 ? finish(video.duration):finish(null,new Error('Durasi video tidak valid.'));
+    video.onerror=()=>finish(null,new Error('Format video ini belum didukung browser. Gunakan MP4 atau WebM.'));
+    video.src=url;
+  });
+}
+
+function energyBySecond(bytes,duration){
+  const data=new DataView(bytes.buffer,bytes.byteOffset,bytes.byteLength);
+  const secCount=Math.ceil(duration), dataSeconds=Math.ceil((bytes.byteLength/2)/4000);
+  const result=new Float32Array(Math.max(1,Math.min(secCount,dataSeconds)));
+  // Subsample 200 samples/s (PCM mono 4000 Hz, 16-bit signed).
+  for(let sec=0;sec<result.length;sec++){
+    let square=0,count=0;
+    const first=sec*4000,limit=Math.min((sec+1)*4000,bytes.byteLength/2);
+    for(let i=first;i<limit;i+=20){const x=data.getInt16(i*2,true)/32768;square+=x*x;count++;}
+    result[sec]=Math.sqrt(square/Math.max(1,count));
+  }
+  return result;
+}
+
+function detectHighlights(duration,levels,quantity,wantedLength,smart=true){
+  const len=Math.min(wantedLength,duration),limit=Math.max(0,duration-len);
+  if(duration<8)throw new Error('Video minimal 8 detik.');
+  if(!smart||!levels?.length){
+    const clips=[];
+    const n=Math.min(quantity,Math.max(1,Math.floor(duration/len)));
+    for(let i=0;i<n;i++){let start=n===1?Math.max(0,(duration-len)/2):i*(duration-len)/(n-1);
+      clips.push({start:+start.toFixed(1),end:+(start+len).toFixed(1),score:50,title:`Klip ${i+1} dari video`,reason:'Bagian berdasarkan pembagian waktu, tanpa analisis audio'});
+    }
+    return clips;
+  }
+  const maxLevel=Math.max(...levels,0.000001),entries=[];
+  const stride=Math.max(2,Math.round(len/7));
+  for(let start=0;start<=limit;start+=stride){
+    const from=Math.floor(start),to=Math.min(levels.length,Math.ceil(start+len));
+    let sum=0,changes=0,active=0,pn=0;
+    for(let i=from;i<to;i++){
+      const n=levels[i]/maxLevel;
+      sum+=n; if(n>.17)active++;
+      if(i>from)changes+=Math.abs(n-pn);
+      pn=n;
+    }
+    const count=Math.max(1,to-from);
+    const avg=sum/count,variance=changes/count,act=active/count;
+    const score=Math.min(85,Math.round(31+34*avg+22*Math.min(1,variance*4)+11*act));
+    entries.push({start:+start.toFixed(1),end:+(start+len).toFixed(1),score,
+      title:avg>.45?'Bagian dengan suara aktif dan intens':'Highlight audio dari video',
+      reason:`Aktivitas audio ${Math.round(act*100)}% • Perubahan energi ${Math.round(variance*100)}% • skor editorial, bukan prediksi views`});
+  }
+  if(limit>0 && (!entries.length||entries.at(-1).start<limit)){
+    const tail={...entries.at(-1),start:+limit.toFixed(1),end:+duration.toFixed(1)};
+    if(!entries.length)entries.push(tail);
+  }
+  entries.sort((a,b)=>b.score-a.score||a.start-b.start);
+  const selected=[];
+  for(const c of entries){
+    if(selected.every(s=>c.end<=s.start+.25||c.start>=s.end-.25))selected.push(c);
+    if(selected.length>=quantity)break;
+  }
+  if(!selected.length)selected.push({start:0,end:len,score:50,title:'Klip awal',reason:'Audio tidak cukup untuk diberi ranking'});
+  return selected;
+}
+
+function outputFilter(aspect){
+  const presets={'9:16':[360,640],'1:1':[480,480],'16:9':[640,360]};
+  const [w,h]=presets[aspect]||presets['9:16'];
+  return `scale=${w}:${h}:force_original_aspect_ratio=increase,crop=${w}:${h},setsar=1,fps=20`;
+}
+
+async function makeClips(engine,sourceName,highlights,aspect){
+  const clips=[];
+  for(let i=0;i<highlights.length;i++){
+    const seg=highlights[i],outfile=`clip_${i+1}.mp4`;
+    statusText(`Memotong klip ${i+1} dari ${highlights.length} • perhatikan memori HP`,Math.min(98,42+Math.round(55*i/highlights.length)));
+    const opts=[
+      '-hide_banner','-loglevel','error','-ss',String(seg.start),'-i',sourceName,
+      '-t',String(Math.max(.5,seg.end-seg.start)),
+      '-map','0:v:0','-map','0:a?',
+      '-vf',outputFilter(aspect),'-c:v','libx264','-preset','ultrafast',
+      '-crf','29','-pix_fmt','yuv420p','-c:a','aac','-b:a','96k',
+      '-threads','1','-movflags','+faststart',outfile
+    ];
+    const code=await engine.exec(opts, 180000);
+    if(code!==0)throw new Error(`Klip ${i+1} gagal dikodekan. Coba durasi 15 detik, 1 klip, atau video lebih kecil.`);
+    const out=await engine.readFile(outfile);
+    if(!out?.byteLength)throw new Error(`Klip ${i+1} tidak berisi video.`);
+    const blob=new Blob([out],{type:'video/mp4'});
+    const url=URL.createObjectURL(blob);generatedUrls.push(url);
+    clips.push({...seg,url});
+    await engine.deleteFile(outfile).catch(()=>{});
+    // Yield to UI so the browser can update progress on slower phones.
+    await new Promise(resolve=>setTimeout(resolve,50));
+  }
+  return clips;
+}
+
+async function begin(){
+  if(!$('#permission').checked){showToast('Centang izin penggunaan video terlebih dahulu.');return}
+  if(state.mode==='url'){
+    statusText('Link YouTube memerlukan backend',0,'GitHub Pages tidak dapat membaca/memotong video langsung dari YouTube. Unduh video asli milik Anda lewat YouTube Studio, lalu gunakan Upload Video.');
+    showToast('Gunakan tab Upload Video untuk memotong tanpa kartu/server.');
+    return;
+  }
+  const file=$('#videoFile').files?.[0];
+  if(!file){showToast('Pilih file MP4/WebM dahulu.');return}
+  const maxSize=(/Mobi|Android/i.test(navigator.userAgent)?80:180)*1024*1024;
+  if(file.size>maxSize){
+    statusText('File terlalu besar untuk mode lokal',0,`Batas aman: ${Math.round(maxSize/1048576)} MB. Kompres video atau jalankan backend di PC.`);
+    return;
+  }
+  $('#create').disabled=true;
+  try{
+    generatedUrls.forEach(URL.revokeObjectURL);generatedUrls=[];
+    statusText('Membaca video dari penyimpanan HP…',2);
+    const duration=await getVideoDuration(file);
+    const engine=await getClipEngine();
+    const ext=/\.([a-z0-9]{2,5})$/i.exec(file.name)?.[1]?.toLowerCase()||'mp4';
+    const sourceName=`source.${ext}`;
+    await engine.writeFile(sourceName,new Uint8Array(await file.arrayBuffer()));
+    let levels=null;
+    if($('#aiToggle').checked){
+      statusText('Menganalisis aktivitas audio…',28);
+      try{
+        const code=await engine.exec(['-hide_banner','-loglevel','error','-i',sourceName,'-vn','-ac','1','-ar','4000','-f','s16le','energy.pcm'],120000);
+        if(code===0){const buf=await engine.readFile('energy.pcm');levels=energyBySecond(buf,duration);await engine.deleteFile('energy.pcm').catch(()=>{});}
+      }catch(e){console.warn('Audio tidak dapat dianalisis; memakai potongan berbasis waktu',e);}
+    }
+    const highlights=detectHighlights(duration,levels,Number($('#clipCount').value),Number($('#clipDuration').value),$('#aiToggle').checked);
+    statusText(`Ditemukan ${highlights.length} rekomendasi • mulai membuat MP4…`,40);
+    const clips=await makeClips(engine,sourceName,highlights,state.aspect);
+    await engine.deleteFile(sourceName).catch(()=>{});
+    renderResults(clips,false,'Video asli diproses lokal di browser. Skor berdasarkan aktivitas audio, bukan AI memahami isi video atau prediksi views.');
+    statusText(`Selesai • ${clips.length} MP4 siap diunduh`,100);
+    $('#results').scrollIntoView({behavior:'smooth',block:'start'});
+    showToast(`${clips.length} klip MP4 berhasil dibuat!`);
+  }catch(e){
+    console.error(e);
+    statusText('Gagal membuat MP4',0,(e?.message||String(e))+' Jika HP kehabisan memori, coba video lebih kecil, 1 klip dan 15 detik.');
+  }finally{$('#create').disabled=false}
+}
 $('#create').addEventListener('click',begin);
 async function pollJob(){if(!state.job)return;try{const r=await fetch(`/api/jobs/${encodeURIComponent(state.job)}`,{cache:'no-store'});if(!r.ok)throw Error('Tidak bisa mengambil status tugas.');const d=await r.json();statusText(d.step||'Memproses…',d.progress||0,d.error||'');if(d.status==='done'){clearInterval(state.poll);state.poll=null;$('#create').disabled=false;renderResults(d.clips||[],false,d.warning);$('#results').scrollIntoView({behavior:'smooth',block:'start'});showToast('Klip berhasil dibuat. Klik Putar atau Unduh MP4.')}if(d.status==='error'){clearInterval(state.poll);state.poll=null;$('#create').disabled=false;showToast('Proses gagal. Periksa pesan kesalahan.')}}catch(e){clearInterval(state.poll);state.poll=null;$('#create').disabled=false;statusText('Gagal mengambil progres',0,e.message)}}
 function renderResults(clips,demo=false,warning=null){$('#resultsBadge').textContent=demo?'TAMPILAN DEMO':`${clips.length} KLIP SIAP`;$('#resultsBadge').classList.toggle('demo',demo);$('#resultsDesc').textContent=demo?'Contoh skor dan rekomendasi; belum menghasilkan MP4.':warning||'Skor adalah ranking editorial, bukan prediksi views pasti.';
@@ -113,7 +298,7 @@ async function install(){if(state.installPrompt){await state.installPrompt.promp
 $('#sideInstall').addEventListener('click',install);$('#installTop').addEventListener('click',install);
 if('serviceWorker'in navigator && location.protocol!=='file:')window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
 $$('.navbtn[href],.mobilenav a').forEach(a=>a.addEventListener('click',()=>{const box=a.closest('nav');if(box)box.querySelectorAll('a').forEach(x=>x.classList.remove('active'));a.classList.add('active')}));
-checkServer();
+setMode('upload');$('#serverDot').classList.add('online');$('#serverText').textContent='Mode lokal • MP4';
 </script>
 </body>
 </html>
