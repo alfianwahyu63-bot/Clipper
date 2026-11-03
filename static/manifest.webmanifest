@@ -1,0 +1,17 @@
+{
+  "name": "ViralCut Studio — Auto Shorts Clipper",
+  "short_name": "ViralCut",
+  "description": "Analisis momen video dan buat klip pendek otomatis dari konten yang Anda miliki haknya.",
+  "id": "/",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#090d18",
+  "theme_color": "#090d18",
+  "orientation": "any",
+  "lang": "id",
+  "icons": [
+    { "src": "/static/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "/static/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
